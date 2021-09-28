@@ -11,13 +11,13 @@ def get_list_files(path_name):
     with os.scandir(path_name) as list_files:
         for entry in list_files:
             if entry.is_file():
-                    with open(path_name+'/'+entry.name, encoding='windows-1251') as file_obj:
+                    with open(path_name+'/'+entry.name, encoding='utf-8') as file_obj:
                         tmp_file = file_obj.readlines()
                         hope_dict[entry.name] = (len(tmp_file), tmp_file)
                         res_list.append((entry.name, hope_dict[entry.name]))
         res_list.sort(key=lambda temp: temp[1][0])
 
-    with open ('res.txt','w') as document:
+    with open ('res.txt','w', encoding='utf-8') as document:
         for variable in res_list:
             document.write(variable[0])
             document.write('\n')
